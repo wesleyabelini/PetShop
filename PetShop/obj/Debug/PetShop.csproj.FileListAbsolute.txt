@@ -1,0 +1,18 @@
+c:\users\wesley\documents\visual studio 2015\Projects\PetShop\PetShop\bin\Debug\PetShop.exe.config
+c:\users\wesley\documents\visual studio 2015\Projects\PetShop\PetShop\bin\Debug\PetShop.exe
+c:\users\wesley\documents\visual studio 2015\Projects\PetShop\PetShop\bin\Debug\PetShop.pdb
+c:\users\wesley\documents\visual studio 2015\Projects\PetShop\PetShop\obj\Debug\PetShop.csprojResolveAssemblyReference.cache
+c:\users\wesley\documents\visual studio 2015\Projects\PetShop\PetShop\obj\Debug\PetShop.Form1.resources
+c:\users\wesley\documents\visual studio 2015\Projects\PetShop\PetShop\obj\Debug\PetShop.Properties.Resources.resources
+c:\users\wesley\documents\visual studio 2015\Projects\PetShop\PetShop\obj\Debug\PetShop.csproj.GenerateResource.Cache
+c:\users\wesley\documents\visual studio 2015\Projects\PetShop\PetShop\obj\Debug\PetShop.exe
+c:\users\wesley\documents\visual studio 2015\Projects\PetShop\PetShop\obj\Debug\PetShop.pdb
+E:\Projetos\Softwares\C#\Meus Projetos\PetShop\PetShop\bin\Debug\PetShop.exe.config
+E:\Projetos\Softwares\C#\Meus Projetos\PetShop\PetShop\obj\Debug\PetShop.exe
+E:\Projetos\Softwares\C#\Meus Projetos\PetShop\PetShop\obj\Debug\PetShop.pdb
+E:\Projetos\Softwares\C#\Meus Projetos\PetShop\PetShop\bin\Debug\PetShop.exe
+E:\Projetos\Softwares\C#\Meus Projetos\PetShop\PetShop\bin\Debug\PetShop.pdb
+E:\Projetos\Softwares\C#\Meus Projetos\PetShop\PetShop\obj\Debug\PetShop.csprojResolveAssemblyReference.cache
+E:\Projetos\Softwares\C#\Meus Projetos\PetShop\PetShop\obj\Debug\PetShop.Form1.resources
+E:\Projetos\Softwares\C#\Meus Projetos\PetShop\PetShop\obj\Debug\PetShop.Properties.Resources.resources
+E:\Projetos\Softwares\C#\Meus Projetos\PetShop\PetShop\obj\Debug\PetShop.csproj.GenerateResource.Cache
