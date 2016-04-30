@@ -65,6 +65,7 @@
             this.textBox20 = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabControl2 = new System.Windows.Forms.TabControl();
@@ -114,11 +115,17 @@
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label16 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.textBox14 = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
+            this.monthCalendar2 = new System.Windows.Forms.MonthCalendar();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.button7 = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -139,6 +146,8 @@
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.groupBox3.SuspendLayout();
+            this.tabPage7.SuspendLayout();
+            this.groupBox10.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -152,7 +161,7 @@
             this.tabControl1.Multiline = true;
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(674, 403);
+            this.tabControl1.Size = new System.Drawing.Size(690, 426);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -169,7 +178,7 @@
             this.tabPage1.Location = new System.Drawing.Point(39, 4);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(631, 395);
+            this.tabPage1.Size = new System.Drawing.Size(647, 418);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Consulta";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -484,6 +493,12 @@
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Agenda do Dia";
             // 
+            // monthCalendar1
+            // 
+            this.monthCalendar1.Location = new System.Drawing.Point(19, 18);
+            this.monthCalendar1.Name = "monthCalendar1";
+            this.monthCalendar1.TabIndex = 22;
+            // 
             // dataGridView3
             // 
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -499,7 +514,7 @@
             this.tabPage2.Location = new System.Drawing.Point(39, 4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(631, 395);
+            this.tabPage2.Size = new System.Drawing.Size(647, 418);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Cadastro";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -508,11 +523,13 @@
             // 
             this.tabControl2.Controls.Add(this.tabPage4);
             this.tabControl2.Controls.Add(this.tabPage5);
+            this.tabControl2.Controls.Add(this.tabPage6);
+            this.tabControl2.Controls.Add(this.tabPage7);
             this.tabControl2.ImageList = this.imageList2;
             this.tabControl2.Location = new System.Drawing.Point(6, 6);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(638, 358);
+            this.tabControl2.Size = new System.Drawing.Size(638, 406);
             this.tabControl2.TabIndex = 0;
             // 
             // tabPage4
@@ -525,7 +542,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 23);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(630, 331);
+            this.tabPage4.Size = new System.Drawing.Size(630, 379);
             this.tabPage4.TabIndex = 0;
             this.tabPage4.Text = "Clientes";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -533,9 +550,9 @@
             // button2
             // 
             this.button2.ImageList = this.imageList2;
-            this.button2.Location = new System.Drawing.Point(543, 290);
+            this.button2.Location = new System.Drawing.Point(536, 261);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(75, 67);
             this.button2.TabIndex = 3;
             this.button2.Text = "Cadastrar";
             this.button2.UseVisualStyleBackColor = true;
@@ -545,7 +562,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(6, 208);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(351, 105);
+            this.dataGridView1.Size = new System.Drawing.Size(506, 165);
             this.dataGridView1.TabIndex = 2;
             // 
             // groupBox2
@@ -795,7 +812,7 @@
             this.tabPage5.Location = new System.Drawing.Point(4, 23);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(630, 331);
+            this.tabPage5.Size = new System.Drawing.Size(630, 379);
             this.tabPage5.TabIndex = 1;
             this.tabPage5.Text = "Funcionários";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -807,7 +824,7 @@
             this.groupBox6.Controls.Add(this.label18);
             this.groupBox6.Controls.Add(this.textBox15);
             this.groupBox6.Controls.Add(this.label17);
-            this.groupBox6.Location = new System.Drawing.Point(171, 71);
+            this.groupBox6.Location = new System.Drawing.Point(171, 94);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(288, 190);
             this.groupBox6.TabIndex = 0;
@@ -865,14 +882,14 @@
             this.tabPage3.Location = new System.Drawing.Point(39, 4);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(631, 395);
+            this.tabPage3.Size = new System.Drawing.Size(647, 418);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Agendamento";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(100, 308);
+            this.button4.Location = new System.Drawing.Point(100, 372);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 5;
@@ -887,7 +904,7 @@
             this.groupBox5.Controls.Add(this.textBox13);
             this.groupBox5.Location = new System.Drawing.Point(6, 6);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(265, 118);
+            this.groupBox5.Size = new System.Drawing.Size(265, 100);
             this.groupBox5.TabIndex = 4;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Cliente";
@@ -895,7 +912,7 @@
             // button3
             // 
             this.button3.ImageList = this.imageList2;
-            this.button3.Location = new System.Drawing.Point(94, 78);
+            this.button3.Location = new System.Drawing.Point(94, 64);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 3;
@@ -905,7 +922,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(6, 43);
+            this.label15.Location = new System.Drawing.Point(6, 29);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(48, 13);
             this.label15.TabIndex = 2;
@@ -913,7 +930,7 @@
             // 
             // textBox13
             // 
-            this.textBox13.Location = new System.Drawing.Point(54, 40);
+            this.textBox13.Location = new System.Drawing.Point(54, 26);
             this.textBox13.Name = "textBox13";
             this.textBox13.Size = new System.Drawing.Size(198, 20);
             this.textBox13.TabIndex = 0;
@@ -923,7 +940,7 @@
             this.groupBox4.Controls.Add(this.dataGridView2);
             this.groupBox4.Location = new System.Drawing.Point(277, 6);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(364, 367);
+            this.groupBox4.Size = new System.Drawing.Size(364, 406);
             this.groupBox4.TabIndex = 3;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Pet`s";
@@ -931,20 +948,19 @@
             // dataGridView2
             // 
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(6, 40);
+            this.dataGridView2.Location = new System.Drawing.Point(6, 26);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(352, 321);
+            this.dataGridView2.Size = new System.Drawing.Size(352, 363);
             this.dataGridView2.TabIndex = 0;
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.monthCalendar2);
             this.groupBox3.Controls.Add(this.label16);
-            this.groupBox3.Controls.Add(this.dateTimePicker1);
             this.groupBox3.Controls.Add(this.textBox14);
-            this.groupBox3.Controls.Add(this.label14);
-            this.groupBox3.Location = new System.Drawing.Point(15, 130);
+            this.groupBox3.Location = new System.Drawing.Point(15, 112);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(265, 152);
+            this.groupBox3.Size = new System.Drawing.Size(265, 254);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Agendamento";
@@ -952,34 +968,18 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(6, 68);
+            this.label16.Location = new System.Drawing.Point(6, 218);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(41, 13);
             this.label16.TabIndex = 5;
             this.label16.Text = "Horário";
             // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(54, 28);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 0;
-            // 
             // textBox14
             // 
-            this.textBox14.Location = new System.Drawing.Point(54, 65);
+            this.textBox14.Location = new System.Drawing.Point(54, 215);
             this.textBox14.Name = "textBox14";
             this.textBox14.Size = new System.Drawing.Size(106, 20);
             this.textBox14.TabIndex = 4;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(6, 34);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(30, 13);
-            this.label14.TabIndex = 1;
-            this.label14.Text = "Data";
             // 
             // imageList1
             // 
@@ -989,17 +989,94 @@
             this.imageList1.Images.SetKeyName(1, "Book Search (2).ico");
             this.imageList1.Images.SetKeyName(2, "Books.ico");
             // 
-            // monthCalendar1
+            // monthCalendar2
             // 
-            this.monthCalendar1.Location = new System.Drawing.Point(19, 18);
-            this.monthCalendar1.Name = "monthCalendar1";
-            this.monthCalendar1.TabIndex = 22;
+            this.monthCalendar2.Location = new System.Drawing.Point(18, 30);
+            this.monthCalendar2.Name = "monthCalendar2";
+            this.monthCalendar2.TabIndex = 24;
+            // 
+            // tabPage6
+            // 
+            this.tabPage6.Location = new System.Drawing.Point(4, 23);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage6.Size = new System.Drawing.Size(630, 379);
+            this.tabPage6.TabIndex = 2;
+            this.tabPage6.Text = "Casa";
+            this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // tabPage7
+            // 
+            this.tabPage7.Controls.Add(this.groupBox10);
+            this.tabPage7.Location = new System.Drawing.Point(4, 23);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage7.Size = new System.Drawing.Size(630, 379);
+            this.tabPage7.TabIndex = 3;
+            this.tabPage7.Text = "Serviço";
+            this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.label14);
+            this.groupBox10.Controls.Add(this.label9);
+            this.groupBox10.Controls.Add(this.button7);
+            this.groupBox10.Controls.Add(this.textBox11);
+            this.groupBox10.Controls.Add(this.textBox9);
+            this.groupBox10.Location = new System.Drawing.Point(92, 51);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(446, 277);
+            this.groupBox10.TabIndex = 0;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "Serviços";
+            // 
+            // textBox9
+            // 
+            this.textBox9.Location = new System.Drawing.Point(103, 51);
+            this.textBox9.Name = "textBox9";
+            this.textBox9.Size = new System.Drawing.Size(304, 20);
+            this.textBox9.TabIndex = 0;
+            // 
+            // textBox11
+            // 
+            this.textBox11.Location = new System.Drawing.Point(103, 96);
+            this.textBox11.Multiline = true;
+            this.textBox11.Name = "textBox11";
+            this.textBox11.Size = new System.Drawing.Size(304, 79);
+            this.textBox11.TabIndex = 1;
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(332, 202);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(75, 23);
+            this.button7.TabIndex = 2;
+            this.button7.Text = "Cadastrar";
+            this.button7.UseVisualStyleBackColor = true;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(40, 54);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(43, 13);
+            this.label9.TabIndex = 3;
+            this.label9.Text = "Serviço";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(40, 96);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(55, 13);
+            this.label14.TabIndex = 4;
+            this.label14.Text = "Descrição";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(694, 427);
+            this.ClientSize = new System.Drawing.Size(725, 461);
             this.Controls.Add(this.tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
@@ -1032,6 +1109,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.tabPage7.ResumeLayout(false);
+            this.groupBox10.ResumeLayout(false);
+            this.groupBox10.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1071,7 +1151,6 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Button button3;
@@ -1082,9 +1161,7 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox textBox14;
-        private System.Windows.Forms.Label label14;
         private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.GroupBox groupBox9;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.TextBox textBox25;
@@ -1127,6 +1204,16 @@
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.ImageList imageList2;
         private System.Windows.Forms.MonthCalendar monthCalendar1;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.MonthCalendar monthCalendar2;
+        private System.Windows.Forms.TabPage tabPage6;
+        private System.Windows.Forms.TabPage tabPage7;
+        private System.Windows.Forms.GroupBox groupBox10;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.TextBox textBox11;
+        private System.Windows.Forms.TextBox textBox9;
     }
 }
 
