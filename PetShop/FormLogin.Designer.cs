@@ -30,8 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormLogin));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBoxUSUARIO = new System.Windows.Forms.TextBox();
+            this.textBoxSENHA = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -48,21 +48,21 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // textBox1
+            // textBoxUSUARIO
             // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Location = new System.Drawing.Point(215, 90);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(168, 20);
-            this.textBox1.TabIndex = 1;
+            this.textBoxUSUARIO.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBoxUSUARIO.Location = new System.Drawing.Point(215, 90);
+            this.textBoxUSUARIO.Name = "textBoxUSUARIO";
+            this.textBoxUSUARIO.Size = new System.Drawing.Size(168, 20);
+            this.textBoxUSUARIO.TabIndex = 1;
             // 
-            // textBox2
+            // textBoxSENHA
             // 
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox2.Location = new System.Drawing.Point(215, 147);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(168, 20);
-            this.textBox2.TabIndex = 2;
+            this.textBoxSENHA.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBoxSENHA.Location = new System.Drawing.Point(215, 147);
+            this.textBoxSENHA.Name = "textBoxSENHA";
+            this.textBoxSENHA.Size = new System.Drawing.Size(168, 20);
+            this.textBoxSENHA.TabIndex = 2;
             // 
             // button1
             // 
@@ -72,6 +72,7 @@
             this.button1.TabIndex = 3;
             this.button1.Text = "Login";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label1
             // 
@@ -101,8 +102,8 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBoxSENHA);
+            this.Controls.Add(this.textBoxUSUARIO);
             this.Controls.Add(this.pictureBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormLogin";
@@ -114,8 +115,8 @@
         }
 
         #endregion
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBoxUSUARIO;
+        private System.Windows.Forms.TextBox textBoxSENHA;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
