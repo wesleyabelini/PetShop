@@ -32,12 +32,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.button6 = new System.Windows.Forms.Button();
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.label29 = new System.Windows.Forms.Label();
             this.textBox25 = new System.Windows.Forms.TextBox();
@@ -70,34 +67,33 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.button2 = new System.Windows.Forms.Button();
+            this.buttonCadastroCliente = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.comboBoxPortePet = new System.Windows.Forms.ComboBox();
             this.label19 = new System.Windows.Forms.Label();
             this.textBoxAlergiaPet = new System.Windows.Forms.TextBox();
             this.textBoxRacaPet = new System.Windows.Forms.TextBox();
-            this.buttonCadastroPet = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.textBoxNomePet = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBoxNumCliente = new System.Windows.Forms.TextBox();
+            this.label33 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.textBoxTel2Cliente = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.textBoxTel1Cliente = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.textBoxBairroCliente = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBoxEnderecoCliente = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBoxCPFCliente = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxNomeCliente = new System.Windows.Forms.TextBox();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -128,15 +124,18 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.monthCalendar2 = new System.Windows.Forms.MonthCalendar();
             this.label16 = new System.Windows.Forms.Label();
             this.textBox14 = new System.Windows.Forms.TextBox();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.button6 = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.buttonCadastroPet = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox9.SuspendLayout();
             this.groupBox8.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -158,6 +157,7 @@
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -178,7 +178,6 @@
             // 
             this.tabPage1.Controls.Add(this.button6);
             this.tabPage1.Controls.Add(this.radioButton3);
-            this.tabPage1.Controls.Add(this.radioButton2);
             this.tabPage1.Controls.Add(this.radioButton1);
             this.tabPage1.Controls.Add(this.pictureBox1);
             this.tabPage1.Controls.Add(this.groupBox9);
@@ -193,16 +192,6 @@
             this.tabPage1.Text = "Consulta";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // button6
-            // 
-            this.button6.ImageIndex = 3;
-            this.button6.ImageList = this.imageList2;
-            this.button6.Location = new System.Drawing.Point(536, 349);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(86, 29);
-            this.button6.TabIndex = 36;
-            this.button6.UseVisualStyleBackColor = true;
-            // 
             // imageList2
             // 
             this.imageList2.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList2.ImageStream")));
@@ -214,11 +203,13 @@
             this.imageList2.Images.SetKeyName(4, "Explorer (3).ico");
             this.imageList2.Images.SetKeyName(5, "OK (3).ico");
             this.imageList2.Images.SetKeyName(6, "Zoom (+) (2).ico");
+            this.imageList2.Images.SetKeyName(7, "Dog (9).ico");
+            this.imageList2.Images.SetKeyName(8, "Home (3).ico");
             // 
             // radioButton3
             // 
             this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(378, 361);
+            this.radioButton3.Location = new System.Drawing.Point(378, 357);
             this.radioButton3.Name = "radioButton3";
             this.radioButton3.Size = new System.Drawing.Size(83, 17);
             this.radioButton3.TabIndex = 35;
@@ -226,36 +217,16 @@
             this.radioButton3.Text = "Aguardando";
             this.radioButton3.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(378, 338);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(96, 17);
-            this.radioButton2.TabIndex = 34;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Preparo Banho";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            // 
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(378, 315);
+            this.radioButton1.Location = new System.Drawing.Point(378, 334);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(56, 17);
             this.radioButton1.TabIndex = 33;
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Banho";
             this.radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.Location = new System.Drawing.Point(263, 315);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 74);
-            this.pictureBox1.TabIndex = 32;
-            this.pictureBox1.TabStop = false;
             // 
             // groupBox9
             // 
@@ -544,7 +515,7 @@
             // 
             // tabPage4
             // 
-            this.tabPage4.Controls.Add(this.button2);
+            this.tabPage4.Controls.Add(this.buttonCadastroCliente);
             this.tabPage4.Controls.Add(this.dataGridView1);
             this.tabPage4.Controls.Add(this.groupBox2);
             this.tabPage4.Controls.Add(this.groupBox1);
@@ -557,15 +528,16 @@
             this.tabPage4.Text = "Clientes";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // buttonCadastroCliente
             // 
-            this.button2.ImageList = this.imageList2;
-            this.button2.Location = new System.Drawing.Point(536, 261);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 67);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Cadastrar";
-            this.button2.UseVisualStyleBackColor = true;
+            this.buttonCadastroCliente.ImageList = this.imageList2;
+            this.buttonCadastroCliente.Location = new System.Drawing.Point(536, 261);
+            this.buttonCadastroCliente.Name = "buttonCadastroCliente";
+            this.buttonCadastroCliente.Size = new System.Drawing.Size(75, 67);
+            this.buttonCadastroCliente.TabIndex = 3;
+            this.buttonCadastroCliente.Text = "Cadastrar";
+            this.buttonCadastroCliente.UseVisualStyleBackColor = true;
+            this.buttonCadastroCliente.Click += new System.EventHandler(this.buttonCadastroCliente_Click);
             // 
             // dataGridView1
             // 
@@ -577,6 +549,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.checkBox3);
             this.groupBox2.Controls.Add(this.comboBoxPortePet);
             this.groupBox2.Controls.Add(this.label19);
             this.groupBox2.Controls.Add(this.textBoxAlergiaPet);
@@ -617,6 +590,7 @@
             // 
             // textBoxAlergiaPet
             // 
+            this.textBoxAlergiaPet.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBoxAlergiaPet.Location = new System.Drawing.Point(74, 108);
             this.textBoxAlergiaPet.Name = "textBoxAlergiaPet";
             this.textBoxAlergiaPet.Size = new System.Drawing.Size(181, 20);
@@ -624,26 +598,16 @@
             // 
             // textBoxRacaPet
             // 
+            this.textBoxRacaPet.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBoxRacaPet.Location = new System.Drawing.Point(74, 56);
             this.textBoxRacaPet.Name = "textBoxRacaPet";
             this.textBoxRacaPet.Size = new System.Drawing.Size(181, 20);
             this.textBoxRacaPet.TabIndex = 24;
             // 
-            // buttonCadastroPet
-            // 
-            this.buttonCadastroPet.ImageIndex = 6;
-            this.buttonCadastroPet.ImageList = this.imageList2;
-            this.buttonCadastroPet.Location = new System.Drawing.Point(180, 148);
-            this.buttonCadastroPet.Name = "buttonCadastroPet";
-            this.buttonCadastroPet.Size = new System.Drawing.Size(75, 23);
-            this.buttonCadastroPet.TabIndex = 23;
-            this.buttonCadastroPet.UseVisualStyleBackColor = true;
-            this.buttonCadastroPet.Click += new System.EventHandler(this.buttonCadastroPet_Click);
-            // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(9, 158);
+            this.label13.Location = new System.Drawing.Point(9, 170);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(140, 13);
             this.label13.TabIndex = 22;
@@ -660,6 +624,7 @@
             // 
             // textBoxNomePet
             // 
+            this.textBoxNomePet.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBoxNomePet.Location = new System.Drawing.Point(74, 30);
             this.textBoxNomePet.Name = "textBoxNomePet";
             this.textBoxNomePet.Size = new System.Drawing.Size(181, 20);
@@ -685,20 +650,20 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.textBoxNumCliente);
+            this.groupBox1.Controls.Add(this.label33);
             this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.textBox7);
+            this.groupBox1.Controls.Add(this.textBoxTel2Cliente);
             this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.textBox8);
+            this.groupBox1.Controls.Add(this.textBoxTel1Cliente);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.textBox6);
-            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.textBoxBairroCliente);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.textBox5);
-            this.groupBox1.Controls.Add(this.textBox4);
+            this.groupBox1.Controls.Add(this.textBoxEnderecoCliente);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.textBox3);
+            this.groupBox1.Controls.Add(this.textBoxCPFCliente);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.textBoxNomeCliente);
             this.groupBox1.Location = new System.Drawing.Point(6, 6);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(351, 196);
@@ -706,85 +671,90 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Pessoal";
             // 
+            // textBoxNumCliente
+            // 
+            this.textBoxNumCliente.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.textBoxNumCliente.Location = new System.Drawing.Point(291, 85);
+            this.textBoxNumCliente.Name = "textBoxNumCliente";
+            this.textBoxNumCliente.Size = new System.Drawing.Size(49, 20);
+            this.textBoxNumCliente.TabIndex = 15;
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(266, 88);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(19, 13);
+            this.label33.TabIndex = 14;
+            this.label33.Text = "Nº";
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(173, 161);
+            this.label7.Location = new System.Drawing.Point(173, 162);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(58, 13);
             this.label7.TabIndex = 13;
             this.label7.Text = "Telefone 2";
             // 
-            // textBox7
+            // textBoxTel2Cliente
             // 
-            this.textBox7.Location = new System.Drawing.Point(237, 158);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(103, 20);
-            this.textBox7.TabIndex = 12;
+            this.textBoxTel2Cliente.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.textBoxTel2Cliente.Location = new System.Drawing.Point(237, 159);
+            this.textBoxTel2Cliente.Name = "textBoxTel2Cliente";
+            this.textBoxTel2Cliente.Size = new System.Drawing.Size(103, 20);
+            this.textBoxTel2Cliente.TabIndex = 12;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 161);
+            this.label8.Location = new System.Drawing.Point(6, 162);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(58, 13);
             this.label8.TabIndex = 11;
             this.label8.Text = "Telefone 1";
             // 
-            // textBox8
+            // textBoxTel1Cliente
             // 
-            this.textBox8.Location = new System.Drawing.Point(71, 158);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(96, 20);
-            this.textBox8.TabIndex = 10;
+            this.textBoxTel1Cliente.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.textBoxTel1Cliente.Location = new System.Drawing.Point(71, 159);
+            this.textBoxTel1Cliente.Name = "textBoxTel1Cliente";
+            this.textBoxTel1Cliente.Size = new System.Drawing.Size(96, 20);
+            this.textBoxTel1Cliente.TabIndex = 10;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(191, 109);
+            this.label6.Location = new System.Drawing.Point(7, 115);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(34, 13);
             this.label6.TabIndex = 9;
             this.label6.Text = "Bairro";
             // 
-            // textBox6
+            // textBoxBairroCliente
             // 
-            this.textBox6.Location = new System.Drawing.Point(230, 106);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(110, 20);
-            this.textBox6.TabIndex = 8;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 109);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(40, 13);
-            this.label5.TabIndex = 3;
-            this.label5.Text = "Cidade";
+            this.textBoxBairroCliente.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.textBoxBairroCliente.Location = new System.Drawing.Point(71, 112);
+            this.textBoxBairroCliente.Name = "textBoxBairroCliente";
+            this.textBoxBairroCliente.Size = new System.Drawing.Size(269, 20);
+            this.textBoxBairroCliente.TabIndex = 8;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 135);
+            this.label4.Location = new System.Drawing.Point(6, 89);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 13);
             this.label4.TabIndex = 7;
             this.label4.Text = "Endereço";
             // 
-            // textBox5
+            // textBoxEnderecoCliente
             // 
-            this.textBox5.Location = new System.Drawing.Point(71, 106);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(110, 20);
-            this.textBox5.TabIndex = 2;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(71, 132);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(269, 20);
-            this.textBox4.TabIndex = 6;
+            this.textBoxEnderecoCliente.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.textBoxEnderecoCliente.Location = new System.Drawing.Point(71, 86);
+            this.textBoxEnderecoCliente.Name = "textBoxEnderecoCliente";
+            this.textBoxEnderecoCliente.Size = new System.Drawing.Size(189, 20);
+            this.textBoxEnderecoCliente.TabIndex = 6;
             // 
             // label3
             // 
@@ -795,12 +765,13 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "CPF";
             // 
-            // textBox3
+            // textBoxCPFCliente
             // 
-            this.textBox3.Location = new System.Drawing.Point(71, 60);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(269, 20);
-            this.textBox3.TabIndex = 4;
+            this.textBoxCPFCliente.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.textBoxCPFCliente.Location = new System.Drawing.Point(71, 60);
+            this.textBoxCPFCliente.Name = "textBoxCPFCliente";
+            this.textBoxCPFCliente.Size = new System.Drawing.Size(269, 20);
+            this.textBoxCPFCliente.TabIndex = 4;
             // 
             // label1
             // 
@@ -811,12 +782,13 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Nome";
             // 
-            // textBox1
+            // textBoxNomeCliente
             // 
-            this.textBox1.Location = new System.Drawing.Point(71, 34);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(269, 20);
-            this.textBox1.TabIndex = 0;
+            this.textBoxNomeCliente.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.textBoxNomeCliente.Location = new System.Drawing.Point(71, 34);
+            this.textBoxNomeCliente.Name = "textBoxNomeCliente";
+            this.textBoxNomeCliente.Size = new System.Drawing.Size(269, 20);
+            this.textBoxNomeCliente.TabIndex = 0;
             // 
             // tabPage5
             // 
@@ -908,6 +880,7 @@
             // tabPage6
             // 
             this.tabPage6.Controls.Add(this.groupBox11);
+            this.tabPage6.ImageIndex = 8;
             this.tabPage6.Location = new System.Drawing.Point(4, 23);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
@@ -957,6 +930,7 @@
             // tabPage7
             // 
             this.tabPage7.Controls.Add(this.groupBox10);
+            this.tabPage7.ImageIndex = 7;
             this.tabPage7.Location = new System.Drawing.Point(4, 23);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
@@ -1117,6 +1091,26 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Agendamento";
             // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(165, 227);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(72, 17);
+            this.checkBox2.TabIndex = 26;
+            this.checkBox2.Text = "Levar Pet";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(165, 204);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(78, 17);
+            this.checkBox1.TabIndex = 25;
+            this.checkBox1.Text = "Buscar Pet";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
             // monthCalendar2
             // 
             this.monthCalendar2.Location = new System.Drawing.Point(18, 30);
@@ -1147,25 +1141,48 @@
             this.imageList1.Images.SetKeyName(1, "Book Search (2).ico");
             this.imageList1.Images.SetKeyName(2, "Books.ico");
             // 
-            // checkBox1
+            // checkBox3
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(165, 204);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(78, 17);
-            this.checkBox1.TabIndex = 25;
-            this.checkBox1.Text = "Buscar Pet";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Location = new System.Drawing.Point(12, 141);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(56, 17);
+            this.checkBox3.TabIndex = 29;
+            this.checkBox3.Text = "Status";
+            this.checkBox3.UseVisualStyleBackColor = true;
             // 
-            // checkBox2
+            // button6
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(165, 227);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(72, 17);
-            this.checkBox2.TabIndex = 26;
-            this.checkBox2.Text = "Levar Pet";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.button6.ImageIndex = 3;
+            this.button6.ImageList = this.imageList2;
+            this.button6.Location = new System.Drawing.Point(536, 349);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(86, 29);
+            this.button6.TabIndex = 36;
+            this.button6.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox1.Image = global::PetShop.Properties.Resources.Dibujos_de_perros_colorear_540x467;
+            this.pictureBox1.Location = new System.Drawing.Point(263, 315);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(100, 74);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 32;
+            this.pictureBox1.TabStop = false;
+            // 
+            // buttonCadastroPet
+            // 
+            this.buttonCadastroPet.Enabled = false;
+            this.buttonCadastroPet.ImageIndex = 6;
+            this.buttonCadastroPet.ImageList = this.imageList2;
+            this.buttonCadastroPet.Location = new System.Drawing.Point(180, 148);
+            this.buttonCadastroPet.Name = "buttonCadastroPet";
+            this.buttonCadastroPet.Size = new System.Drawing.Size(75, 23);
+            this.buttonCadastroPet.TabIndex = 23;
+            this.buttonCadastroPet.UseVisualStyleBackColor = true;
+            this.buttonCadastroPet.Click += new System.EventHandler(this.buttonCadastroPet_Click);
             // 
             // Form1
             // 
@@ -1179,7 +1196,6 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
             this.groupBox8.ResumeLayout(false);
@@ -1210,6 +1226,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1227,25 +1244,23 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox textBoxTel2Cliente;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox textBoxTel1Cliente;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox textBoxBairroCliente;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox textBoxEnderecoCliente;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBoxCPFCliente;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxNomeCliente;
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button buttonCadastroCliente;
         private System.Windows.Forms.Button buttonCadastroPet;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.GroupBox groupBox5;
@@ -1294,7 +1309,6 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.ImageList imageList2;
         private System.Windows.Forms.MonthCalendar monthCalendar1;
@@ -1320,6 +1334,9 @@
         private System.Windows.Forms.TextBox textBoxNomeCasa;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.TextBox textBoxNumCliente;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.CheckBox checkBox3;
     }
 }
 

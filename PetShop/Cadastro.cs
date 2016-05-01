@@ -11,7 +11,7 @@ namespace PetShop
 {
     class Cadastro
     {
-        string sqlconexao = @"Data Source=DESKTOP-L6FI1GU; Initial Catalog = HYDRAPETSOFT; Integrated Security = true;";
+        string sqlconexao = @"Data Source=DESKTOP-L6FI1GU; Initial Catalog = HIDRAPETSOFT; Integrated Security = true;";
 
         public void cadastro(string cmdstring)
         {
@@ -24,6 +24,8 @@ namespace PetShop
 
                 SqlCommand cmd = new SqlCommand(cmdstring , conexao);
                 cmd.ExecuteNonQuery();
+
+                MessageBox.Show("Cadastrado", "Cadastro", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 conexao.Close();
             }
@@ -83,6 +85,33 @@ namespace PetShop
             }
 
             return existe;
+        }
+
+        public int idcliente(string sqlcommand)
+        {
+            int id = 0;
+
+            SqlConnection conexao = new SqlConnection();
+            conexao.ConnectionString = sqlconexao;
+
+            try
+            {
+                conexao.Open();
+
+                SqlCommand cmd = new SqlCommand(sqlcommand, conexao);
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while(reader.Read())
+                {
+                    id = Convert.ToInt16(reader["idCliente"].ToString());
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("" + ex);
+            }
+
+            return id;
         }
     }
 }

@@ -23,10 +23,22 @@ namespace PetShop
         {
             //CADASTRO DE CACHORROS DO CLIENTE
 
-            string cmdInsert = @"INSERT INTO ANIMAIS (nomeAnimal, Porte, Tipo, Observacoes) VALUES ('" + textBoxNomePet.Text + "', '" +
-                comboBoxPortePet.Text + "', '" + textBoxRacaPet.Text + "', '" + textBoxAlergiaPet + "');";
+            string cmdidcli = @"SELECT idCliente FROM CLIENTES WHERE CPF='" + textBoxCPFCliente.Text + "'";
+            int idcliente = cadastro.idcliente(cmdidcli); //   << PEGA O ID DO CLIENTE NO QUAL ESTA FAZENDO O CADASTRO
+
+            string cmdSelectAnimal = @"SELECT nomeAnimal FROM ANIMAIS WHERE idCliente=" + idcliente + ";";
+
+            /*string cmdInsert = @"INSERT INTO ANIMAIS (nomeAnimal, Porte, Tipo, Observacoes, idCliente) VALUES ('" + textBoxNomePet.Text + "', '" +
+                comboBoxPortePet.Text + "', '" + textBoxRacaPet.Text + "', '" + textBoxAlergiaPet.Text + "', " + idcliente + ");";    */
+
+            string cmdInsert = @"INSERT INTO ANIMAIS (nomeAnimal, Observacoes, idCliente) VALUES ('" + textBoxNomePet.Text + "', '" + 
+                textBoxAlergiaPet.Text + "', " + idcliente + ");";
+
+            //OBS >>> VERIFICAR A EXISTENCIA DE TABELAS (PORTE E TIPO) <<<<<
 
             cadastro.cadastro(cmdInsert);
+
+            cadastro.listaTable(cmdSelectAnimal, dataGridView1);
         }
 
         private void buttonCadastroFuncionario_Click(object sender, EventArgs e)
@@ -59,7 +71,7 @@ namespace PetShop
 
         private void ListarPets_Click(object sender, EventArgs e)
         {
-            //LISTAR OS PETS DO CLIENTE
+            //LISTAR OS PETS DO CLIENTE PARA AGENDAR
 
             string cmdSelect = @"SELECT nomeAnimal, Tipo WHERE EXISTS(SELECT CPF FROM Clientes WHERE cpf='" + textBoxAgendCPF.Text + "'";
 
@@ -78,6 +90,19 @@ INNER JOIN Animais AS AN ON AN.idCliente=CLI.idCliente
 WHERE data='" + data + "';";
 
             cadastro.listaTable(cmdSelect, dataGridView3);
+        }
+
+        private void buttonCadastroCliente_Click(object sender, EventArgs e)
+        {
+            //CADASTRAR CLIENTE NO BANCO
+
+            string cmdInsert = @"INSERT INTO CLIENTES VALUES('" + textBoxNomeCliente.Text + "', '" + textBoxCPFCliente.Text + "', '" +
+                textBoxEnderecoCliente.Text + "', '" + textBoxNumCliente.Text + "', '" + textBoxBairroCliente.Text + "', '" + 
+                textBoxTel1Cliente.Text + "', '" + textBoxTel2Cliente.Text + "')";
+
+            cadastro.cadastro(cmdInsert);
+
+            buttonCadastroPet.Enabled = true;  //  << HABILITAR BOTÃO PARA CADASTRAR OS PETS DESTE CLIENTE
         }
     }
 }
