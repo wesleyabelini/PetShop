@@ -73,7 +73,7 @@ namespace PetShop
         {
             //LISTAR OS PETS DO CLIENTE PARA AGENDAR
 
-            string cmdSelect = @"SELECT nomeAnimal, Tipo WHERE EXISTS(SELECT CPF FROM Clientes WHERE cpf='" + textBoxAgendCPF.Text + "'";
+            string cmdSelect = @"SELECT nomeAnimal AS 'Nome' FROM ANIMAIS WHERE EXISTS(SELECT CPF FROM Clientes WHERE cpf='" + textBoxAgendCPF.Text + "')";
 
             cadastro.listaTable(cmdSelect, dataGridView2);
         }
@@ -103,6 +103,46 @@ WHERE data='" + data + "';";
             cadastro.cadastro(cmdInsert);
 
             buttonCadastroPet.Enabled = true;  //  << HABILITAR BOTÃO PARA CADASTRAR OS PETS DESTE CLIENTE
+
+            buttonCadastroCliente.Enabled = false;
+        }
+
+        private void buttonNovoCadastro_Click(object sender, EventArgs e)
+        {
+            //Novo Cadastro Cliente
+
+            buttonCadastroCliente.Enabled = true;
+
+            limpacadastrocliente();
+        }
+
+        private void limpacadastrocliente()
+        {
+            textBoxNomeCliente.Clear();
+            textBoxCPFCliente.Clear();
+            textBoxEnderecoCliente.Clear();
+            textBoxNumCliente.Clear();
+            textBoxBairroCliente.Clear();
+            textBoxTel1Cliente.Clear();
+            textBoxTel2Cliente.Clear();
+        }
+
+        private void buttonAgendamento_Click(object sender, EventArgs e)
+        {
+            //AGENDAMENTO
+
+            int buscarpet = 0;
+            int levarpet = 0;
+
+            if(checkBoxBuscarPet.Checked==true)
+            {
+                buscarpet = 1;
+            }
+
+            if(checkBoxLevarPet.Checked==true)
+            {
+                levarpet = 1;
+            }
         }
     }
 }
