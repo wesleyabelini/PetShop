@@ -89,6 +89,8 @@ namespace PetShop
 
         public int idcliente(string sqlcommand)
         {
+            //retorna o id do cliente no qual a busca será realizada
+
             int id = 0;
 
             SqlConnection conexao = new SqlConnection();
@@ -105,6 +107,8 @@ namespace PetShop
                 {
                     id = Convert.ToInt16(reader["idCliente"].ToString());
                 }
+
+                conexao.Close();
             }
             catch(Exception ex)
             {
@@ -112,6 +116,89 @@ namespace PetShop
             }
 
             return id;
+        }
+
+        public void atulizaCombo(string cmdSelect, ComboBox tabela, string campotabela, string idtabela)
+        {
+            //Atualiza os dados ja cadastrados no sistema
+
+            SqlConnection conexao = new SqlConnection();
+            conexao.ConnectionString = sqlconexao;
+
+            try
+            {
+                conexao.Open();
+
+                SqlDataAdapter ad = new SqlDataAdapter(cmdSelect, conexao);
+                DataTable table = new DataTable();
+                table.Clear();
+
+                ad.Fill(table);
+
+                tabela.DataSource = table;
+                tabela.DisplayMember = campotabela;
+                tabela.ValueMember = idtabela;
+                tabela.SelectedIndex = -1;
+
+                tabela.Refresh();
+
+                conexao.Close();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("" + ex);
+            }
+        }
+
+        public void dadosCliente(string comando, TextBox telefone1, TextBox telefone2, TextBox endereco, TextBox num, TextBox bairro)
+        {
+            //preenche textbox com os dados do cliente conforme busca
+
+            SqlConnection conexao = new SqlConnection();
+            conexao.ConnectionString = sqlconexao;
+
+            try
+            {
+                conexao.Open();
+
+                SqlCommand cmd = new SqlCommand(comando, conexao);
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while(reader.Read())
+                {
+                    if(reader["telefone1"].ToString() !="")
+                    {
+                        telefone1.Text = reader["telefone1"].ToString();
+                    }
+
+                    if(reader["telefone2"].ToString() !="")
+                    {
+                        telefone2.Text = reader["telefone2"].ToString();
+                    }
+
+                    if(reader["rua"].ToString() !="")
+                    {
+                        endereco.Text = reader["rua"].ToString();
+                    }
+
+                    if(reader["numero"].ToString()!="")
+                    {
+                        num.Text = reader["numero"].ToString();
+                    }
+
+                    if(reader["Bairro"].ToString()!="")
+                    {
+                        bairro.Text = reader["Bairro"].ToString();
+                    }
+                    
+                }
+
+                conexao.Close();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("" + ex);
+            }
         }
     }
 }

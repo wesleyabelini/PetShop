@@ -17,6 +17,8 @@ namespace PetShop
         public Form1()
         {
             InitializeComponent();
+
+            atualizarComboPet();
         }
 
         private void buttonCadastroPet_Click(object sender, EventArgs e)
@@ -26,15 +28,12 @@ namespace PetShop
             string cmdidcli = @"SELECT idCliente FROM CLIENTES WHERE CPF='" + textBoxCPFCliente.Text + "'";
             int idcliente = cadastro.idcliente(cmdidcli); //   << PEGA O ID DO CLIENTE NO QUAL ESTA FAZENDO O CADASTRO
 
-            string cmdSelectAnimal = @"SELECT nomeAnimal FROM ANIMAIS WHERE idCliente=" + idcliente + ";";
+            string cmdSelectAnimal = @"SELECT A.nomeAnimal AS 'Nome', nT.nomeTipo AS 'Tipo', nP.nomePorte AS 'Porte' FROM ANIMAIS AS A 
+INNER JOIN TIPOS AS nT ON nT.idTipo = A.idTipo INNER JOIN PORTES AS nP on nP.idPorte = A.idPorte WHERE idCliente=" + idcliente + ";";
 
-            /*string cmdInsert = @"INSERT INTO ANIMAIS (nomeAnimal, Porte, Tipo, Observacoes, idCliente) VALUES ('" + textBoxNomePet.Text + "', '" +
-                comboBoxPortePet.Text + "', '" + textBoxRacaPet.Text + "', '" + textBoxAlergiaPet.Text + "', " + idcliente + ");";    */
+            string cmdInsert = @"INSERT INTO ANIMAIS (nomeAnimal, idPorte, idTipo, Observacoes, idCliente) VALUES ('" + textBoxNomePet.Text + "', '" +
+                comboBoxPortePet.SelectedValue + "', '" + comboBoxTipoPet.SelectedValue + "', '" + textBoxAlergiaPet.Text + "', " + idcliente + ");";
 
-            string cmdInsert = @"INSERT INTO ANIMAIS (nomeAnimal, Observacoes, idCliente) VALUES ('" + textBoxNomePet.Text + "', '" + 
-                textBoxAlergiaPet.Text + "', " + idcliente + ");";
-
-            //OBS >>> VERIFICAR A EXISTENCIA DE TABELAS (PORTE E TIPO) <<<<<
 
             cadastro.cadastro(cmdInsert);
 
@@ -73,9 +72,48 @@ namespace PetShop
         {
             //LISTAR OS PETS DO CLIENTE PARA AGENDAR
 
-            string cmdSelect = @"SELECT nomeAnimal AS 'Nome' FROM ANIMAIS WHERE EXISTS(SELECT CPF FROM Clientes WHERE cpf='" + textBoxAgendCPF.Text + "')";
+            limpezaListagemDadosPet(); //limpar os campos para receber novos dados referente dono pet
+
+            string cmdSelectCliente = @"SELECT * FROM CLIENTES WHERE CPF='" + textBoxAgendCPF.Text + "';";
+            string cmdSelect = @"SELECT A.nomeAnimal as 'Nome' FROM ANIMAIS AS A INNER JOIN Clientes AS B ON B.idCliente = A.idCliente 
+WHERE B.cpf = '" + textBoxAgendCPF.Text + "'";
 
             cadastro.listaTable(cmdSelect, dataGridView2);
+
+            if(radioButton2.Checked==true)
+            {
+                //dados do cliente referente ao cadastro
+
+                cadastro.dadosCliente(cmdSelectCliente, textBoxtelefone1, textBoxtelefone2, textBoxEndereco, textBoxNum, textBoxBairro);
+            }
+            else if(radioButton4.Checked==true)
+            {
+                //dados do cliente para um local fora do cadastro
+
+                limpezaListagemDadosPet();
+            }
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            string cmdSelectCliente = @"SELECT * FROM CLIENTES WHERE CPF='" + textBoxAgendCPF.Text + "';";
+
+            if (radioButton2.Checked == true)
+            {
+                //dados do cliente referente ao cadastro
+
+                limpezaListagemDadosPet();
+
+                cadastro.dadosCliente(cmdSelectCliente, textBoxtelefone1, textBoxtelefone2, textBoxEndereco, textBoxNum, textBoxBairro);
+            }
+        }
+
+        private void radioButton4_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton4.Checked == true)
+            {
+                limpezaListagemDadosPet();
+            }
         }
 
         private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
@@ -116,17 +154,6 @@ WHERE data='" + data + "';";
             limpacadastrocliente();
         }
 
-        private void limpacadastrocliente()
-        {
-            textBoxNomeCliente.Clear();
-            textBoxCPFCliente.Clear();
-            textBoxEnderecoCliente.Clear();
-            textBoxNumCliente.Clear();
-            textBoxBairroCliente.Clear();
-            textBoxTel1Cliente.Clear();
-            textBoxTel2Cliente.Clear();
-        }
-
         private void buttonAgendamento_Click(object sender, EventArgs e)
         {
             //AGENDAMENTO
@@ -143,6 +170,58 @@ WHERE data='" + data + "';";
             {
                 levarpet = 1;
             }
+        }
+
+        private void buttonPetConfig_Click(object sender, EventArgs e)
+        {
+            //Abrir formulario de configuração pet
+
+            FormPetConfig petConfig = new FormPetConfig();
+            petConfig.Show();
+        }
+
+        private void atualizarComboPet()
+        {
+            string cmdSelect = @"SELECT * FROM ";
+
+            cadastro.atulizaCombo(cmdSelect + "Portes", comboBoxPortePet, "nomePorte", "idPorte");
+            cadastro.atulizaCombo(cmdSelect + "Tipos", comboBoxTipoPet, "nomeTipo", "idTipo");
+        }
+
+        private void buttonHoraEntrada_Click(object sender, EventArgs e)
+        {
+            //hora de entrada
+
+            string data = DateTime.Now.ToLongTimeString();
+            textBoxHoraEntrada.Text = data;
+        }
+
+        private void buttonHoraSaida_Click(object sender, EventArgs e)
+        {
+            //hora saida
+
+            string data = DateTime.Now.ToLongTimeString();
+            textBoxHoraSaida.Text = data;
+        }
+
+        private void limpacadastrocliente()
+        {
+            textBoxNomeCliente.Clear();
+            textBoxCPFCliente.Clear();
+            textBoxEnderecoCliente.Clear();
+            textBoxNumCliente.Clear();
+            textBoxBairroCliente.Clear();
+            textBoxTel1Cliente.Clear();
+            textBoxTel2Cliente.Clear();
+        }
+
+        private void limpezaListagemDadosPet()
+        {
+            textBoxtelefone1.Clear();
+            textBoxtelefone2.Clear();
+            textBoxBairro.Clear();
+            textBoxEndereco.Clear();
+            textBoxNum.Clear();
         }
     }
 }

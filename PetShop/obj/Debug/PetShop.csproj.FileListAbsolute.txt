@@ -17,3 +17,4 @@ E:\Projetos\Softwares\C#\Meus Projetos\PetShop\PetShop\obj\Debug\PetShop.Form1.r
 E:\Projetos\Softwares\C#\Meus Projetos\PetShop\PetShop\obj\Debug\PetShop.Properties.Resources.resources
 E:\Projetos\Softwares\C#\Meus Projetos\PetShop\PetShop\obj\Debug\PetShop.csproj.GenerateResource.Cache
 E:\Projetos\Softwares\C#\Meus Projetos\PetShop\PetShop\obj\Debug\PetShop.FormLogin.resources
+E:\Projetos\Softwares\C#\Meus Projetos\PetShop\PetShop\obj\Debug\PetShop.FormPetConfig.resources
