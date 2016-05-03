@@ -38,6 +38,13 @@ INNER JOIN TIPOS AS nT ON nT.idTipo = A.idTipo INNER JOIN PORTES AS nP on nP.idP
             cadastro.cadastro(cmdInsert);
 
             cadastro.listaTable(cmdSelectAnimal, dataGridView1);
+
+            //Operações dafault apos cadastro
+
+            textBoxNomePet.Clear();
+            textBoxAlergiaPet.Clear();
+            comboBoxPortePet.SelectedIndex = -1;
+            comboBoxTipoPet.SelectedIndex = -1;
         }
 
         private void ListarPets_Click(object sender, EventArgs e)
@@ -47,10 +54,13 @@ INNER JOIN TIPOS AS nT ON nT.idTipo = A.idTipo INNER JOIN PORTES AS nP on nP.idP
             limpezaListagemDadosPet(); //limpar os campos para receber novos dados referente dono pet
 
             string cmdSelectCliente = @"SELECT * FROM CLIENTES WHERE CPF='" + textBoxAgendCPF.Text + "';";
-            string cmdSelect = @"SELECT A.nomeAnimal as 'Nome' FROM ANIMAIS AS A INNER JOIN Clientes AS B ON B.idCliente = A.idCliente 
+            string cmdSelect = @"SELECT A.idAnimal, A.nomeAnimal as 'Nome' FROM ANIMAIS AS A INNER JOIN Clientes AS B ON B.idCliente = A.idCliente 
 WHERE B.cpf = '" + textBoxAgendCPF.Text + "'";
 
             cadastro.listaTable(cmdSelect, dataGridView2);
+
+            cadastro.dadosCliente(cmdSelectCliente, textBoxtelefone1, textBoxtelefone2, textBoxEndereco, textBoxNum, textBoxBairro, 
+                textBoxComplementoAgend);
         }
 
         private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
@@ -72,8 +82,8 @@ WHERE data='" + data + "';";
             //CADASTRAR CLIENTE NO BANCO
 
             string cmdInsert = @"INSERT INTO CLIENTES VALUES('" + textBoxNomeCliente.Text + "', '" + textBoxCPFCliente.Text + "', '" +
-                textBoxEnderecoCliente.Text + "', '" + textBoxNumCliente.Text + "', '" + textBoxBairroCliente.Text + "', '" + 
-                textBoxTel1Cliente.Text + "', '" + textBoxTel2Cliente.Text + "')";
+                textBoxEnderecoCliente.Text + "', '" + textBoxNumCliente.Text + "', '" + textBoxComplemento.Text + "', '" + 
+                textBoxBairroCliente.Text + "', '" + textBoxTel1Cliente.Text + "', '" + textBoxTel2Cliente.Text + "')";
 
             cadastro.cadastro(cmdInsert);
 
@@ -95,18 +105,38 @@ WHERE data='" + data + "';";
         {
             //AGENDAMENTO
 
-            int buscarpet = 0;
-            int levarpet = 0;
-
-            if(checkBoxBuscarPet.Checked==true)
+            if(textBoxHora.Text != "" && dataGridView2.Rows.Count >1)
             {
-                buscarpet = 1;
+                string dia = monthCalendar2.SelectionRange.Start.ToString("MM/dd/yyyy");
+                string data = dia + " " + textBoxHora.Text + ":00";
+                int buscarpet = 0;
+                int levarpet = 0;
+                int idlogin = 1;
+
+                string idanimal = dataGridView2.CurrentRow.Cells[0].Value.ToString();
+
+                if (checkBoxBuscarPet.Checked == true)
+                {
+                    buscarpet = 1;
+                }
+
+                if (checkBoxLevarPet.Checked == true)
+                {
+                    levarpet = 1;
+                }
+
+                string cmdInsert = @"INSERT INTO AGENDA VALUES ('" + data + "', '" + textBoxEndereco.Text + "', '" + textBoxNum.Text + "', '" +
+                    textBoxComplementoAgend.Text + "', '" + textBoxBairro.Text + "', '" + textBoxtelefone1.Text + "', '" + textBoxtelefone2.Text +
+                    "', " + idanimal + ", " + idlogin + ", " + buscarpet + ", " + levarpet + ");";
+
+                cadastro.cadastro(cmdInsert);
+            }
+            else
+            {
+                MessageBox.Show("Campo hora não deve ficar vazio", "Erro hora", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            if(checkBoxLevarPet.Checked==true)
-            {
-                levarpet = 1;
-            }
+            
         }
 
         private void buttonPetConfig_Click(object sender, EventArgs e)
@@ -126,6 +156,9 @@ WHERE data='" + data + "';";
 
             //atualiza casa
             cadastro.atulizaCombo(cmdSelect + "Casas", comboBoxCasa, "nomeCasa", "idCasa");
+
+            //atualiza serviço
+            cadastro.atulizaCombo(cmdSelect + "Servicos", comboBoxServicos, "nomeServico", "idServico");
         }
 
         private void buttonHoraEntrada_Click(object sender, EventArgs e)
@@ -166,18 +199,36 @@ WHERE data='" + data + "';";
 
         private void comboBoxPortePet_Click(object sender, EventArgs e)
         {
-            atualizarComboPet();
+            //atualizar porte do pet
+
+            string cmdSelect = @"SELECT * FROM ";
+
+            cadastro.atulizaCombo(cmdSelect + "Portes", comboBoxPortePet, "nomePorte", "idPorte");
         }
 
         private void comboBoxTipoPet_Click(object sender, EventArgs e)
         {
-            atualizarComboPet();
+            string cmdSelect = @"SELECT * FROM ";
+
+            cadastro.atulizaCombo(cmdSelect + "Tipos", comboBoxTipoPet, "nomeTipo", "idTipo");
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             FormAdmin admin = new FormAdmin();
             admin.Show();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            //Relatório
+
+            this.reportViewer1.RefreshReport();
+        }
+
+        private void buttonAddServico_Click(object sender, EventArgs e)
+        {
+            //Inserir o Serviço na Agenda
         }
     }
 }

@@ -19,3 +19,15 @@ E:\Projetos\Softwares\C#\Meus Projetos\PetShop\PetShop\obj\Debug\PetShop.csproj.
 E:\Projetos\Softwares\C#\Meus Projetos\PetShop\PetShop\obj\Debug\PetShop.FormLogin.resources
 E:\Projetos\Softwares\C#\Meus Projetos\PetShop\PetShop\obj\Debug\PetShop.FormPetConfig.resources
 E:\Projetos\Softwares\C#\Meus Projetos\PetShop\PetShop\obj\Debug\PetShop.FormAdmin.resources
+E:\Projetos\Softwares\C#\Meus Projetos\PetShop\PetShop\bin\Debug\Microsoft.ReportViewer.WinForms.dll
+E:\Projetos\Softwares\C#\Meus Projetos\PetShop\PetShop\bin\Debug\Microsoft.SqlServer.Types.dll
+E:\Projetos\Softwares\C#\Meus Projetos\PetShop\PetShop\bin\Debug\de\Microsoft.SqlServer.Types.resources.dll
+E:\Projetos\Softwares\C#\Meus Projetos\PetShop\PetShop\bin\Debug\es\Microsoft.SqlServer.Types.resources.dll
+E:\Projetos\Softwares\C#\Meus Projetos\PetShop\PetShop\bin\Debug\fr\Microsoft.SqlServer.Types.resources.dll
+E:\Projetos\Softwares\C#\Meus Projetos\PetShop\PetShop\bin\Debug\it\Microsoft.SqlServer.Types.resources.dll
+E:\Projetos\Softwares\C#\Meus Projetos\PetShop\PetShop\bin\Debug\ja\Microsoft.SqlServer.Types.resources.dll
+E:\Projetos\Softwares\C#\Meus Projetos\PetShop\PetShop\bin\Debug\ko\Microsoft.SqlServer.Types.resources.dll
+E:\Projetos\Softwares\C#\Meus Projetos\PetShop\PetShop\bin\Debug\pt\Microsoft.SqlServer.Types.resources.dll
+E:\Projetos\Softwares\C#\Meus Projetos\PetShop\PetShop\bin\Debug\ru\Microsoft.SqlServer.Types.resources.dll
+E:\Projetos\Softwares\C#\Meus Projetos\PetShop\PetShop\bin\Debug\zh-Hans\Microsoft.SqlServer.Types.resources.dll
+E:\Projetos\Softwares\C#\Meus Projetos\PetShop\PetShop\bin\Debug\zh-Hant\Microsoft.SqlServer.Types.resources.dll

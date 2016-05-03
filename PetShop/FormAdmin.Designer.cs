@@ -96,7 +96,7 @@
             this.groupBox11.Controls.Add(this.buttonCadastroCasa);
             this.groupBox11.Controls.Add(this.label28);
             this.groupBox11.Controls.Add(this.textBoxNomeCasa);
-            this.groupBox11.Location = new System.Drawing.Point(40, 52);
+            this.groupBox11.Location = new System.Drawing.Point(36, 42);
             this.groupBox11.Name = "groupBox11";
             this.groupBox11.Size = new System.Drawing.Size(386, 147);
             this.groupBox11.TabIndex = 1;
@@ -151,7 +151,7 @@
             this.groupBox10.Controls.Add(this.buttonCadastroServico);
             this.groupBox10.Controls.Add(this.textBoxDescricaoServico);
             this.groupBox10.Controls.Add(this.textBoxNomeServico);
-            this.groupBox10.Location = new System.Drawing.Point(30, 16);
+            this.groupBox10.Location = new System.Drawing.Point(20, 13);
             this.groupBox10.Name = "groupBox10";
             this.groupBox10.Size = new System.Drawing.Size(418, 205);
             this.groupBox10.TabIndex = 1;
@@ -227,7 +227,7 @@
             this.groupBox6.Controls.Add(this.label18);
             this.groupBox6.Controls.Add(this.textBoxLoginUsuario);
             this.groupBox6.Controls.Add(this.label17);
-            this.groupBox6.Location = new System.Drawing.Point(81, 20);
+            this.groupBox6.Location = new System.Drawing.Point(68, 21);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(323, 189);
             this.groupBox6.TabIndex = 1;

@@ -150,7 +150,8 @@ namespace PetShop
             }
         }
 
-        public void dadosCliente(string comando, TextBox telefone1, TextBox telefone2, TextBox endereco, TextBox num, TextBox bairro)
+        public void dadosCliente(string comando, TextBox telefone1, TextBox telefone2, TextBox endereco, TextBox num, TextBox bairro, 
+            TextBox complemento)
         {
             //preenche textbox com os dados do cliente conforme busca
 
@@ -189,6 +190,11 @@ namespace PetShop
                     if(reader["Bairro"].ToString()!="")
                     {
                         bairro.Text = reader["Bairro"].ToString();
+                    }
+
+                    if(reader["complemento"].ToString()!="")
+                    {
+                        complemento.Text = reader["complemento"].ToString();
                     }
                     
                 }
