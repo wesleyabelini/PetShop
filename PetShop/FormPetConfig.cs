@@ -36,6 +36,18 @@ namespace PetShop
             string cmdInsert = "INSERT INTO " + tabela + " VALUES ('" + textBox1.Text + "');";
 
             cadastro.cadastro(cmdInsert);
+
+            textBox1.Clear();
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            textBox1.Clear();
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            textBox1.Clear();
         }
     }
 }

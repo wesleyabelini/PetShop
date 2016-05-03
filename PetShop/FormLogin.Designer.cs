@@ -41,9 +41,9 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::PetShop.Properties.Resources.Dibujos_de_perros_colorear_540x467;
-            this.pictureBox1.Location = new System.Drawing.Point(-24, 10);
+            this.pictureBox1.Location = new System.Drawing.Point(-51, 12);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(377, 269);
+            this.pictureBox1.Size = new System.Drawing.Size(483, 324);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -51,7 +51,7 @@
             // textBoxUSUARIO
             // 
             this.textBoxUSUARIO.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBoxUSUARIO.Location = new System.Drawing.Point(215, 90);
+            this.textBoxUSUARIO.Location = new System.Drawing.Point(342, 125);
             this.textBoxUSUARIO.Name = "textBoxUSUARIO";
             this.textBoxUSUARIO.Size = new System.Drawing.Size(168, 20);
             this.textBoxUSUARIO.TabIndex = 1;
@@ -59,14 +59,14 @@
             // textBoxSENHA
             // 
             this.textBoxSENHA.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBoxSENHA.Location = new System.Drawing.Point(215, 147);
+            this.textBoxSENHA.Location = new System.Drawing.Point(342, 182);
             this.textBoxSENHA.Name = "textBoxSENHA";
             this.textBoxSENHA.Size = new System.Drawing.Size(168, 20);
             this.textBoxSENHA.TabIndex = 2;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(308, 196);
+            this.button1.Location = new System.Drawing.Point(435, 231);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 3;
@@ -78,7 +78,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(212, 64);
+            this.label1.Location = new System.Drawing.Point(339, 99);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(57, 15);
             this.label1.TabIndex = 4;
@@ -88,7 +88,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(212, 129);
+            this.label2.Location = new System.Drawing.Point(339, 164);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(48, 15);
             this.label2.TabIndex = 5;
@@ -98,7 +98,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(399, 282);
+            this.ClientSize = new System.Drawing.Size(525, 354);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);

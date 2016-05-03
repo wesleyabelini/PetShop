@@ -40,34 +40,6 @@ INNER JOIN TIPOS AS nT ON nT.idTipo = A.idTipo INNER JOIN PORTES AS nP on nP.idP
             cadastro.listaTable(cmdSelectAnimal, dataGridView1);
         }
 
-        private void buttonCadastroFuncionario_Click(object sender, EventArgs e)
-        {
-            //CADASTRO DE USUARIOS - FUNCIONARIOS COM SEUS LOGINS
-
-            string cmdInsert = @"INSERT INTO LOGINS VALUES('" + textBoxNomeUsuario.Text + "', '" + textBoxLoginUsuario.Text + "', '" + 
-                textBoxSenhaUsuario.Text + "');";
-
-            cadastro.cadastro(cmdInsert);
-        }
-
-        private void buttonCadastroCasa_Click(object sender, EventArgs e)
-        {
-            //Cadastro da Casa - Pet
-
-            string cmdInsert = @"INSERT INTO CASAS VALUES ('" + textBoxNomeCasa.Text + "');";
-
-            cadastro.cadastro(cmdInsert);
-        }
-
-        private void buttonCadastroServico_Click(object sender, EventArgs e)
-        {
-            //CADASTRO DE SERVIÇOS REALIZADOS PELA PET
-
-            string cmdInsert = @"INSERT INTO SERVICOS VALUES ('" + textBoxNomeServico.Text + "', '" + textBoxDescricaoServico.Text + "');";
-
-            cadastro.cadastro(cmdInsert);
-        }
-
         private void ListarPets_Click(object sender, EventArgs e)
         {
             //LISTAR OS PETS DO CLIENTE PARA AGENDAR
@@ -79,41 +51,6 @@ INNER JOIN TIPOS AS nT ON nT.idTipo = A.idTipo INNER JOIN PORTES AS nP on nP.idP
 WHERE B.cpf = '" + textBoxAgendCPF.Text + "'";
 
             cadastro.listaTable(cmdSelect, dataGridView2);
-
-            if(radioButton2.Checked==true)
-            {
-                //dados do cliente referente ao cadastro
-
-                cadastro.dadosCliente(cmdSelectCliente, textBoxtelefone1, textBoxtelefone2, textBoxEndereco, textBoxNum, textBoxBairro);
-            }
-            else if(radioButton4.Checked==true)
-            {
-                //dados do cliente para um local fora do cadastro
-
-                limpezaListagemDadosPet();
-            }
-        }
-
-        private void radioButton2_CheckedChanged(object sender, EventArgs e)
-        {
-            string cmdSelectCliente = @"SELECT * FROM CLIENTES WHERE CPF='" + textBoxAgendCPF.Text + "';";
-
-            if (radioButton2.Checked == true)
-            {
-                //dados do cliente referente ao cadastro
-
-                limpezaListagemDadosPet();
-
-                cadastro.dadosCliente(cmdSelectCliente, textBoxtelefone1, textBoxtelefone2, textBoxEndereco, textBoxNum, textBoxBairro);
-            }
-        }
-
-        private void radioButton4_CheckedChanged(object sender, EventArgs e)
-        {
-            if (radioButton4.Checked == true)
-            {
-                limpezaListagemDadosPet();
-            }
         }
 
         private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
@@ -186,6 +123,9 @@ WHERE data='" + data + "';";
 
             cadastro.atulizaCombo(cmdSelect + "Portes", comboBoxPortePet, "nomePorte", "idPorte");
             cadastro.atulizaCombo(cmdSelect + "Tipos", comboBoxTipoPet, "nomeTipo", "idTipo");
+
+            //atualiza casa
+            cadastro.atulizaCombo(cmdSelect + "Casas", comboBoxCasa, "nomeCasa", "idCasa");
         }
 
         private void buttonHoraEntrada_Click(object sender, EventArgs e)
@@ -222,6 +162,22 @@ WHERE data='" + data + "';";
             textBoxBairro.Clear();
             textBoxEndereco.Clear();
             textBoxNum.Clear();
+        }
+
+        private void comboBoxPortePet_Click(object sender, EventArgs e)
+        {
+            atualizarComboPet();
+        }
+
+        private void comboBoxTipoPet_Click(object sender, EventArgs e)
+        {
+            atualizarComboPet();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            FormAdmin admin = new FormAdmin();
+            admin.Show();
         }
     }
 }
