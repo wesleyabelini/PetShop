@@ -19,6 +19,7 @@ namespace PetShop
             InitializeComponent();
 
             atualizarComboPet();
+            //tabControl1.DrawItem += new DrawItemEventHandler(tabControl1_DrawItem);
         }
 
         private void buttonCadastroPet_Click(object sender, EventArgs e)
@@ -54,13 +55,15 @@ INNER JOIN TIPOS AS nT ON nT.idTipo = A.idTipo INNER JOIN PORTES AS nP on nP.idP
             limpezaListagemDadosPet(); //limpar os campos para receber novos dados referente dono pet
 
             string cmdSelectCliente = @"SELECT * FROM CLIENTES WHERE CPF='" + textBoxAgendCPF.Text + "';";
-            string cmdSelect = @"SELECT A.idAnimal, A.nomeAnimal as 'Nome' FROM ANIMAIS AS A INNER JOIN Clientes AS B ON B.idCliente = A.idCliente 
+            string cmdSelect = @"SELECT A.idAnimal, A.nomeAnimal FROM ANIMAIS AS A INNER JOIN Clientes AS B ON B.idCliente = A.idCliente 
 WHERE B.cpf = '" + textBoxAgendCPF.Text + "'";
 
-            cadastro.listaTable(cmdSelect, dataGridView2);
+            cadastro.atulizaCombo(cmdSelect, comboBoxNomePet, "nomeAnimal", "idAnimal");
 
             cadastro.dadosCliente(cmdSelectCliente, textBoxtelefone1, textBoxtelefone2, textBoxEndereco, textBoxNum, textBoxBairro, 
-                textBoxComplementoAgend);
+                textBoxComplementoAgend, textBoxNome);
+
+            textBoxNome2.Text = textBoxNome.Text;
         }
 
         private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
@@ -69,7 +72,7 @@ WHERE B.cpf = '" + textBoxAgendCPF.Text + "'";
 
             string data = monthCalendar1.SelectionRange.Start.ToString();
 
-            string cmdSelect = @"SELECT nomeCliente AS 'Cliente', nomeAnimal AS 'Animal' FROM AGENDA AS A
+            string cmdSelect = @"SELECT nomeCliente AS 'Cliente', nomeAnimal AS 'Animal' FROM OrdemDeServico AS A
 INNER JOIN Clientes AS CLI ON CLI.idCliente=A.idCliente
 INNER JOIN Animais AS AN ON AN.idCliente=CLI.idCliente
 WHERE data='" + data + "';";
@@ -105,15 +108,14 @@ WHERE data='" + data + "';";
         {
             //AGENDAMENTO
 
-            if(textBoxHora.Text != "" && dataGridView2.Rows.Count >1)
+            if(textBoxHora.Text != "" && comboBoxNomePet.Items.Count >1)
             {
                 string dia = monthCalendar2.SelectionRange.Start.ToString("MM/dd/yyyy");
                 string data = dia + " " + textBoxHora.Text + ":00";
                 int buscarpet = 0;
                 int levarpet = 0;
-                int idlogin = 1;
 
-                string idanimal = dataGridView2.CurrentRow.Cells[0].Value.ToString();
+                string idanimal = comboBoxNomePet.SelectedValue.ToString();
 
                 if (checkBoxBuscarPet.Checked == true)
                 {
@@ -125,9 +127,9 @@ WHERE data='" + data + "';";
                     levarpet = 1;
                 }
 
-                string cmdInsert = @"INSERT INTO AGENDA VALUES ('" + data + "', '" + textBoxEndereco.Text + "', '" + textBoxNum.Text + "', '" +
-                    textBoxComplementoAgend.Text + "', '" + textBoxBairro.Text + "', '" + textBoxtelefone1.Text + "', '" + textBoxtelefone2.Text +
-                    "', " + idanimal + ", " + idlogin + ", " + buscarpet + ", " + levarpet + ");";
+                string cmdInsert = @"INSERT INTO ORDEMDESERVICO (idAnimal, dataHoraAgenda, rua, numero, complemento, bairro, telefone1, telefone2, 
+busca, volta) VALUES (" + idanimal + ", '" + data + "', '" + textBoxEndereco.Text + "', '" + textBoxNum.Text + "', '" + textBoxComplementoAgend.Text +
+"', '" + textBoxBairro.Text + "', '" + textBoxtelefone1.Text + "', '" + textBoxtelefone2.Text + "', " + buscarpet + ", " + levarpet + ");";
 
                 cadastro.cadastro(cmdInsert);
             }
@@ -228,7 +230,43 @@ WHERE data='" + data + "';";
 
         private void buttonAddServico_Click(object sender, EventArgs e)
         {
-            //Inserir o Serviço na Agenda
+            //adicionar serviço à orderm de serviço
+
+
         }
+
+        /*private void tabControl1_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            Graphics g = e.Graphics;
+            Brush _textBrush;
+
+            // Get the item from the collection.
+            TabPage _tabPage = tabControl1.TabPages[e.Index];
+
+            // Get the real bounds for the tab rectangle.
+            Rectangle _tabBounds = tabControl1.GetTabRect(e.Index);
+
+            if (e.State == DrawItemState.Selected)
+            {
+
+                // Draw a different background color, and don't paint a focus rectangle.
+                _textBrush = new SolidBrush(Color.Red);
+                g.FillRectangle(Brushes.Gray, e.Bounds);
+            }
+            else
+            {
+                _textBrush = new System.Drawing.SolidBrush(e.ForeColor);
+                e.DrawBackground();
+            }
+
+            // Use our own font.
+            Font _tabFont = new Font("Arial", (float)10.0, FontStyle.Bold, GraphicsUnit.Pixel);
+
+            // Draw string. Center the text.
+            StringFormat _stringFlags = new StringFormat();
+            _stringFlags.Alignment = StringAlignment.Center;
+            _stringFlags.LineAlignment = StringAlignment.Center;
+            g.DrawString(_tabPage.Text, _tabFont, _textBrush, _tabBounds, new StringFormat(_stringFlags));
+        }*/
     }
 }
