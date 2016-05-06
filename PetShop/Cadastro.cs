@@ -211,5 +211,46 @@ namespace PetShop
                 MessageBox.Show("" + ex);
             }
         }
+
+        public void dadospet(string codigo, TextBox nome, TextBox porte, TextBox tipo, TextBox obeservacao)
+        {
+            SqlConnection conexao = new SqlConnection();
+            conexao.ConnectionString = sqlconexao;
+
+            try
+            {
+                conexao.Open();
+
+                SqlCommand cmd = new SqlCommand(codigo, conexao);
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while(reader.Read())
+                {
+                    if(reader["nomeAnimal"].ToString() !="")
+                    {
+                        nome.Text = reader["nomeAnimal"].ToString();
+                    }
+
+                    if(reader["nomePorte"].ToString() !="")
+                    {
+                        porte.Text = reader["nomePorte"].ToString();
+                    }
+
+                    if(reader["nomeTipo"].ToString()!="")
+                    {
+                        tipo.Text = reader["nomeTipo"].ToString();
+                    }
+
+                    if(reader["observacoes"].ToString()!="")
+                    {
+                        obeservacao.Text = reader["observacoes"].ToString();
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("" + ex);
+            }
+        }
     }
 }

@@ -54,16 +54,32 @@ INNER JOIN TIPOS AS nT ON nT.idTipo = A.idTipo INNER JOIN PORTES AS nP on nP.idP
 
             limpezaListagemDadosPet(); //limpar os campos para receber novos dados referente dono pet
 
-            string cmdSelectCliente = @"SELECT * FROM CLIENTES WHERE CPF='" + textBoxAgendCPF.Text + "';";
+            string cmdSelectCliente = @"SELECT * FROM CLIENTES WHERE CPF='" + textBoxAgendCPF.Text + "';"; 
             string cmdSelect = @"SELECT A.idAnimal, A.nomeAnimal FROM ANIMAIS AS A INNER JOIN Clientes AS B ON B.idCliente = A.idCliente 
 WHERE B.cpf = '" + textBoxAgendCPF.Text + "'";
 
             cadastro.atulizaCombo(cmdSelect, comboBoxNomePet, "nomeAnimal", "idAnimal");
 
+            //baixar os dados do cliente
+
             cadastro.dadosCliente(cmdSelectCliente, textBoxtelefone1, textBoxtelefone2, textBoxEndereco, textBoxNum, textBoxBairro, 
                 textBoxComplementoAgend, textBoxNome);
 
             textBoxNome2.Text = textBoxNome.Text;
+
+            if(comboBoxNomePet.Items.Count >=0)
+            {
+                comboBoxNomePet.SelectedIndex = 0;
+
+                limpaCampoPet();
+
+                string cmdSelectdadosPet = @"SELECT A.NOMEANIMAL, PO.NOMEPORTE, TI.NOMETIPO, A.observacoes FROM Animais AS A
+INNER JOIN Portes AS PO ON PO.idPorte=A.idPorte
+INNER JOIN Tipos AS TI ON TI.idTipo=A.idTipo
+WHERE A.idAnimal=" + comboBoxNomePet.SelectedValue + ";";
+
+                cadastro.dadospet(cmdSelectdadosPet, textBoxNomePetD, textBoxPortePetD, textBoxTipoPetD, textBoxObeservacapPetD);
+            }
         }
 
         private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
@@ -183,11 +199,13 @@ busca, volta) VALUES (" + idanimal + ", '" + data + "', '" + textBoxEndereco.Tex
         {
             textBoxNomeCliente.Clear();
             textBoxCPFCliente.Clear();
+            textBoxCPFBUSCA.Clear();
             textBoxEnderecoCliente.Clear();
             textBoxNumCliente.Clear();
             textBoxBairroCliente.Clear();
             textBoxTel1Cliente.Clear();
             textBoxTel2Cliente.Clear();
+            textBoxComplemento.Clear();
         }
 
         private void limpezaListagemDadosPet()
@@ -197,6 +215,16 @@ busca, volta) VALUES (" + idanimal + ", '" + data + "', '" + textBoxEndereco.Tex
             textBoxBairro.Clear();
             textBoxEndereco.Clear();
             textBoxNum.Clear();
+            textBoxNome.Clear();
+            textBoxComplementoAgend.Clear();
+        }
+
+        private void limpaCampoPet()
+        {
+            textBoxNomePetD.Clear();
+            textBoxTipoPetD.Clear();
+            textBoxPortePetD.Clear();
+            textBoxObeservacapPetD.Clear();
         }
 
         private void comboBoxPortePet_Click(object sender, EventArgs e)
@@ -233,6 +261,64 @@ busca, volta) VALUES (" + idanimal + ", '" + data + "', '" + textBoxEndereco.Tex
             //adicionar serviço à orderm de serviço
 
 
+        }
+
+        private void comboBoxNomePet_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (textBoxNome2.Text !="")
+            {
+                limpaCampoPet();
+
+                string cmdSelectdadosPet = @"SELECT A.NOMEANIMAL, PO.NOMEPORTE, TI.NOMETIPO, A.observacoes FROM Animais AS A
+INNER JOIN Portes AS PO ON PO.idPorte=A.idPorte
+INNER JOIN Tipos AS TI ON TI.idTipo=A.idTipo
+WHERE A.idAnimal=" + comboBoxNomePet.SelectedValue + ";";
+
+                cadastro.dadospet(cmdSelectdadosPet, textBoxNomePetD, textBoxPortePetD, textBoxTipoPetD, textBoxObeservacapPetD);
+            }
+            
+        }
+
+        private void buttonBuscar_Click(object sender, EventArgs e)
+        {
+            //Botao buscar para consultar os dados do pet
+            //Este recurso sera utlizado para alteração de dados do cliente, assim como incluir novos pets
+
+            string cmdidcli = @"SELECT idCliente FROM CLIENTES WHERE CPF='" + textBoxCPFBUSCA.Text + "'";
+            int idcliente = cadastro.idcliente(cmdidcli);
+
+            string cmdSelect = @"SELECT * FROM CLIENTES WHERE CPF='" + textBoxCPFBUSCA.Text + "';";
+
+            cadastro.dadosCliente(cmdSelect, textBoxTel1Cliente, textBoxTel2Cliente, textBoxEnderecoCliente, textBoxNumCliente,
+                textBoxBairroCliente, textBoxComplemento, textBoxNomeCliente);
+
+            textBoxCPFCliente.Text = textBoxCPFBUSCA.Text;
+
+            string cmdSelectAnimal = @"SELECT A.nomeAnimal AS 'Nome', nT.nomeTipo AS 'Tipo', nP.nomePorte AS 'Porte' FROM ANIMAIS AS A 
+INNER JOIN TIPOS AS nT ON nT.idTipo = A.idTipo INNER JOIN PORTES AS nP on nP.idPorte = A.idPorte WHERE idCliente=" + idcliente + ";";
+
+            cadastro.listaTable(cmdSelectAnimal, dataGridView1);
+
+
+            buttonCadastroPet.Enabled = true;
+            buttonCadastroCliente.Enabled = false;
+            buttonNovoCadastro.Enabled = true;
+        }
+
+        private void tabControl1_Click(object sender, EventArgs e)
+        {
+            //Encerrar o Programa com o X
+
+            if(tabPage6.Focus())
+            {
+                DialogResult result= MessageBox.Show("Deseja sair do Sistema HydraPetSoft?", "HydraPetSoft", MessageBoxButtons.YesNo, 
+                    MessageBoxIcon.Information);
+
+                if(result == DialogResult.Yes)
+                {
+                    this.Close();
+                }
+            }
         }
 
         /*private void tabControl1_DrawItem(object sender, DrawItemEventArgs e)
