@@ -252,5 +252,44 @@ namespace PetShop
                 MessageBox.Show("" + ex);
             }
         }
+
+        public int insertOrdem(ComboBox pet)
+        {
+            int idordem = 0;
+
+            string cmdSelect = @"SELECT MAX(IDORDEMDESERVICO) as 'valor' FROM ORDEMDESERVICO";
+
+            SqlConnection conexao = new SqlConnection();
+            conexao.ConnectionString = sqlconexao;
+
+            try
+            {
+                conexao.Open();
+
+                SqlCommand cmd = new SqlCommand(cmdSelect, conexao);
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    idordem =Convert.ToInt16(reader["valor"].ToString());
+                }
+
+            }
+            catch
+            {
+                //null
+            }
+
+            if (idordem == 0)
+            {
+                string cmdInsertOrdem = @"INSERT INTO ORDEMDESERVICO (RUA, idAnimal) VALUES ('', " + pet.SelectedValue + ");";
+
+                cadastro(cmdInsertOrdem);
+
+                idordem++;
+            }
+
+            return idordem;
+        }
     }
 }

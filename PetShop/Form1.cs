@@ -122,12 +122,10 @@ WHERE data='" + data + "';";
 
         private void buttonAgendamento_Click(object sender, EventArgs e)
         {
-            //AGENDAMENTO
+            //AGENDAMENTO >>update ordem de serviço
 
             if(textBoxHora.Text != "" && comboBoxNomePet.Items.Count >1)
             {
-                string dia = monthCalendar2.SelectionRange.Start.ToString("MM/dd/yyyy");
-                string data = dia + " " + textBoxHora.Text + ":00";
                 int buscarpet = 0;
                 int levarpet = 0;
 
@@ -143,11 +141,11 @@ WHERE data='" + data + "';";
                     levarpet = 1;
                 }
 
-                string cmdInsert = @"INSERT INTO ORDEMDESERVICO (idAnimal, dataHoraAgenda, rua, numero, complemento, bairro, telefone1, telefone2, 
-busca, volta) VALUES (" + idanimal + ", '" + data + "', '" + textBoxEndereco.Text + "', '" + textBoxNum.Text + "', '" + textBoxComplementoAgend.Text +
-"', '" + textBoxBairro.Text + "', '" + textBoxtelefone1.Text + "', '" + textBoxtelefone2.Text + "', " + buscarpet + ", " + levarpet + ");";
+                string cmdInsert = @"UPDATE ORDEMDESERVICO SET BUSCA =" + buscarpet;
+                string cmdInsert2 = @"UPDATE ORDEMDESERVICO SET VOLTA =" + levarpet;
 
                 cadastro.cadastro(cmdInsert);
+                cadastro.cadastro(cmdInsert2);
             }
             else
             {
@@ -260,7 +258,39 @@ busca, volta) VALUES (" + idanimal + ", '" + data + "', '" + textBoxEndereco.Tex
         {
             //adicionar serviço à orderm de serviço
 
+            string dia = monthCalendar2.SelectionRange.Start.ToString("MM/dd/yyyy");
 
+            if(textBoxHora.Text =="")
+            {
+                textBoxHora.Text = "00";
+            }
+
+            string data = dia + " " + textBoxHora.Text + ":00";
+
+            if (textBoxNome2.Text != "" && comboBoxNomePet.SelectedIndex > -1)
+            {
+                int id = cadastro.insertOrdem(comboBoxNomePet);
+
+                if (textBoxEndereco.Text != "")
+                {
+                    //Realizar cadatro da Ordem de Serviço
+                    string cmdInsertOrdem = @"INSERT INTO ORDEMDESERVICO (IDANIMAL, DATAHORAAGENDA, RUA, NUMERO, COMPLEMENTO, BAIRRO, TELEFONE1, 
+TELEFONE2, BUSCA, VOLTA) VALUES (" + comboBoxNomePet.SelectedValue + ", '" + data + "', '" + textBoxEndereco.Text + "', '" + textBoxNum.Text + "', '" +
+textBoxComplementoAgend.Text + "', '" + textBoxBairro.Text + "', '" + textBoxtelefone1.Text + "', '" + textBoxtelefone2.Text + "', 0, 0);";
+
+                    cadastro.cadastro(cmdInsertOrdem);
+
+                    string cmdServicoOS = @"INSERT INTO SERVICOOS VALUES(" + comboBoxServicos.SelectedValue + ", " + id + ");";
+
+                    string cmdServTB = @"Select A.nomeServico, A.valor FROM SERVICOS AS A 
+INNER JOIN SERVICOOS AS B ON B.IDSERVICO = A.IDSERVICO 
+WHERE IDORDEMDESERVICO=" + id + ";";
+
+                    cadastro.cadastro(cmdServicoOS);
+
+                    cadastro.listaTable(cmdServTB, dataGridView4);
+                }
+            }
         }
 
         private void comboBoxNomePet_SelectedValueChanged(object sender, EventArgs e)
