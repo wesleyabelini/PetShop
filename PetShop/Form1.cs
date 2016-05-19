@@ -13,13 +13,27 @@ namespace PetShop
     public partial class Form1 : Form
     {
         Cadastro cadastro = new Cadastro();
-
+        
         public Form1()
         {
             InitializeComponent();
 
             atualizarComboPet();
+            comboBoxTipoOS.SelectedIndex = comboBoxTipoOS.Items.IndexOf("Buscar PET");
             //tabControl1.DrawItem += new DrawItemEventHandler(tabControl1_DrawItem);
+
+            FormLogin frml = new FormLogin();
+            frml.FormClosed += new FormClosedEventHandler(mainForm_FormClosed);
+            frml.ShowDialog();
+        }
+
+        // this is the method block executes when main form is closed
+        void mainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            // here you can do anything
+
+            // we will close the application
+            Application.Exit();
         }
 
         private void buttonCadastroPet_Click(object sender, EventArgs e)
@@ -54,18 +68,23 @@ INNER JOIN TIPOS AS nT ON nT.idTipo = A.idTipo INNER JOIN PORTES AS nP on nP.idP
 
             limpezaListagemDadosPet(); //limpar os campos para receber novos dados referente dono pet
 
-            string cmdSelectCliente = @"SELECT * FROM CLIENTES WHERE CPF='" + textBoxAgendCPF.Text + "';"; 
+            if (textBoxAgendCPF.MaskFull)
+            {
+                textBoxAgendCPF.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+            }
+
+            string cmdSelectCliente = @"SELECT * FROM CLIENTES WHERE CPF='" + textBoxAgendCPF.Text + "';";
+            //textBoxAgendCPF.TextMaskFormat = MaskFormat.IncludePromptAndLiterals;
+
             string cmdSelect = @"SELECT A.idAnimal, A.nomeAnimal FROM ANIMAIS AS A INNER JOIN Clientes AS B ON B.idCliente = A.idCliente 
-WHERE B.cpf = '" + textBoxAgendCPF.Text + "'";
-
+            WHERE B.cpf = '" + textBoxAgendCPF.Text + "'";
+            
             cadastro.atulizaCombo(cmdSelect, comboBoxNomePet, "nomeAnimal", "idAnimal");
-
+            
             //baixar os dados do cliente
 
             cadastro.dadosCliente(cmdSelectCliente, textBoxtelefone1, textBoxtelefone2, textBoxEndereco, textBoxNum, textBoxBairro, 
-                textBoxComplementoAgend, textBoxNome);
-
-            textBoxNome2.Text = textBoxNome.Text;
+                textBoxComplementoAgend, textBoxNome2);
 
             if(comboBoxNomePet.Items.Count >=0)
             {
@@ -74,11 +93,11 @@ WHERE B.cpf = '" + textBoxAgendCPF.Text + "'";
                 limpaCampoPet();
 
                 string cmdSelectdadosPet = @"SELECT A.NOMEANIMAL, PO.NOMEPORTE, TI.NOMETIPO, A.observacoes FROM Animais AS A
-INNER JOIN Portes AS PO ON PO.idPorte=A.idPorte
-INNER JOIN Tipos AS TI ON TI.idTipo=A.idTipo
-WHERE A.idAnimal=" + comboBoxNomePet.SelectedValue + ";";
+                INNER JOIN Portes AS PO ON PO.idPorte=A.idPorte
+                INNER JOIN Tipos AS TI ON TI.idTipo=A.idTipo
+                WHERE A.idAnimal=" + comboBoxNomePet.SelectedValue + ";";
 
-                cadastro.dadospet(cmdSelectdadosPet, textBoxNomePetD, textBoxPortePetD, textBoxTipoPetD, textBoxObeservacapPetD);
+                cadastro.dadospet(cmdSelectdadosPet, textBoxPortePetD, textBoxTipoPetD, textBoxObeservacapPetD);
             }
         }
 
@@ -86,13 +105,13 @@ WHERE A.idAnimal=" + comboBoxNomePet.SelectedValue + ";";
         {
             //CONFORME ALTERAÇÃO DE DATA >>>>>>>>> Executa a listagem da agenda para o dia....<<<<<<<<<<
 
-            string data = monthCalendar1.SelectionRange.Start.ToString();
+            string data = monthCalendar1.SelectionRange.Start.ToString("dd/MM/yyyy");
 
-            string cmdSelect = @"SELECT nomeCliente AS 'Cliente', nomeAnimal AS 'Animal' FROM OrdemDeServico AS A
-INNER JOIN Clientes AS CLI ON CLI.idCliente=A.idCliente
-INNER JOIN Animais AS AN ON AN.idCliente=CLI.idCliente
-WHERE data='" + data + "';";
-
+            string cmdSelect = @"SELECT A.idOrdemDeServico AS 'ID', nomeCliente AS 'Cliente', nomeAnimal AS 'Animal' FROM OrdemDeServico AS A
+                                INNER JOIN Animais AS AN ON AN.idAnimal = A.idAnimal
+                                INNER JOIN Clientes AS CLI ON CLI.idCliente=AN.idCliente
+                                WHERE Convert(date,A.dataHoraAgenda) = Convert(date,'" + data + "') ;";
+            
             cadastro.listaTable(cmdSelect, dataGridView3);
         }
 
@@ -123,36 +142,63 @@ WHERE data='" + data + "';";
         private void buttonAgendamento_Click(object sender, EventArgs e)
         {
             //AGENDAMENTO >>update ordem de serviço
-
-            if(textBoxHora.Text != "" && comboBoxNomePet.Items.Count >1)
+            
+            if (textBoxNome2.Text == "")
             {
+                MessageBox.Show("Selecione um cliente.", "Erro campo Cliente", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (dataGridView4.Rows.Count <= 0)
+            {
+                MessageBox.Show("Selecione pelo menos um serviço.", "Erro campo PET", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                string dia = monthCalendar2.SelectionRange.Start.ToString("dd/MM/yyyy");
+                string data = dia + " " + maskedTextBox1.Text + ":00";
                 int buscarpet = 0;
                 int levarpet = 0;
 
                 string idanimal = comboBoxNomePet.SelectedValue.ToString();
-
-                if (checkBoxBuscarPet.Checked == true)
+                
+                if (comboBoxTipoOS.SelectedText == "Buscar PET")
                 {
                     buscarpet = 1;
                 }
-
-                if (checkBoxLevarPet.Checked == true)
+                else if (comboBoxTipoOS.SelectedText == "Levar PET")
                 {
                     levarpet = 1;
                 }
 
+                string cmdInsert = @"INSERT INTO ORDEMDESERVICO (
+                idAnimal, dataHoraAgenda, rua, numero, complemento, bairro, telefone1, telefone2, busca, volta)
+                VALUES ("
+                + idanimal + ", '" + data + "', '" + textBoxEndereco.Text + "', '" + textBoxNum.Text + "', '"
+                + textBoxComplementoAgend.Text + "', '" + textBoxBairro.Text + "', '" + textBoxtelefone1.Text + "', '" 
+                + textBoxtelefone2.Text + "', " + buscarpet + ", " + levarpet + ") SELECT SCOPE_IDENTITY();";
+
+                int id = cadastro.cadastroComReturnId(cmdInsert);
+                string cmdServicoOS = "";
+                string colID;
+                foreach (DataGridViewRow dr in dataGridView4.Rows)
+                {
+                    colID = dr.Cells["idServico"].Value.ToString();
+                    cmdServicoOS = cmdServicoOS + @"INSERT INTO SERVICOOS (idServico, idOrdemDeServico) VALUES(" + colID + ", " + id + ");";
+                }
+
+                cadastro.cadastro(cmdServicoOS);
+                
+
+                //id = cadastro.cadastroComReturnId(cmdServicoOS);
+
+                /*
                 string cmdInsert = @"UPDATE ORDEMDESERVICO SET BUSCA =" + buscarpet;
                 string cmdInsert2 = @"UPDATE ORDEMDESERVICO SET VOLTA =" + levarpet;
 
-                cadastro.cadastro(cmdInsert);
-                cadastro.cadastro(cmdInsert2);
+                cadastro.cadastro(cmdServicoOS);
+                cadastro.cadastro(cmdInsert2);*/
             }
-            else
-            {
-                MessageBox.Show("Campo hora não deve ficar vazio", "Erro hora", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
             
+
         }
 
         private void buttonPetConfig_Click(object sender, EventArgs e)
@@ -193,6 +239,28 @@ WHERE data='" + data + "';";
             textBoxHoraSaida.Text = data;
         }
 
+        private void limpaAbaOS()
+        {
+            textBoxAgendCPF.Clear();
+            textBoxNome2.Clear();
+
+            textBoxTipoPetD.Clear();
+            textBoxPortePetD.Clear();
+            textBoxObeservacapPetD.Clear();
+            textBoxEndereco.Clear();
+            textBoxNum.Clear();
+            textBoxComplementoAgend.Clear();
+            textBoxBairro.Clear();
+            textBoxtelefone1.Clear();
+            textBoxtelefone2.Clear();
+            dataGridView4.DataSource = null;
+            dataGridView4.Rows.Clear();
+            maskedTextBox1.Clear();
+            cadastro.atulizaCombo("SELECT * FROM Servicos", comboBoxServicos, "nomeServico", "idServico");
+
+            comboBoxNomePet.DataSource = null;
+        }
+
         private void limpacadastrocliente()
         {
             textBoxNomeCliente.Clear();
@@ -213,13 +281,11 @@ WHERE data='" + data + "';";
             textBoxBairro.Clear();
             textBoxEndereco.Clear();
             textBoxNum.Clear();
-            textBoxNome.Clear();
             textBoxComplementoAgend.Clear();
         }
 
         private void limpaCampoPet()
         {
-            textBoxNomePetD.Clear();
             textBoxTipoPetD.Clear();
             textBoxPortePetD.Clear();
             textBoxObeservacapPetD.Clear();
@@ -249,6 +315,8 @@ WHERE data='" + data + "';";
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'hidrapetsoftDataSet.OrdemDeServico' table. You can move, or remove it, as needed.
+            this.OrdemDeServicoTableAdapter.Fill(this.hidrapetsoftDataSet.OrdemDeServico);
             //Relatório
 
             this.reportViewer1.RefreshReport();
@@ -256,8 +324,10 @@ WHERE data='" + data + "';";
 
         private void buttonAddServico_Click(object sender, EventArgs e)
         {
-            //adicionar serviço à orderm de serviço
+            cadastro.listaTablePorArray(comboBoxServicos, dataGridView4);
 
+            //adicionar serviço à orderm de serviço
+            /*
             string dia = monthCalendar2.SelectionRange.Start.ToString("MM/dd/yyyy");
 
             if(textBoxHora.Text =="")
@@ -290,7 +360,9 @@ WHERE IDORDEMDESERVICO=" + id + ";";
 
                     cadastro.listaTable(cmdServTB, dataGridView4);
                 }
-            }
+            }*/
+
+
         }
 
         private void comboBoxNomePet_SelectedValueChanged(object sender, EventArgs e)
@@ -304,7 +376,7 @@ INNER JOIN Portes AS PO ON PO.idPorte=A.idPorte
 INNER JOIN Tipos AS TI ON TI.idTipo=A.idTipo
 WHERE A.idAnimal=" + comboBoxNomePet.SelectedValue + ";";
 
-                cadastro.dadospet(cmdSelectdadosPet, textBoxNomePetD, textBoxPortePetD, textBoxTipoPetD, textBoxObeservacapPetD);
+                cadastro.dadospet(cmdSelectdadosPet, textBoxPortePetD, textBoxTipoPetD, textBoxObeservacapPetD);
             }
             
         }
@@ -320,7 +392,7 @@ WHERE A.idAnimal=" + comboBoxNomePet.SelectedValue + ";";
             string cmdSelect = @"SELECT * FROM CLIENTES WHERE CPF='" + textBoxCPFBUSCA.Text + "';";
 
             cadastro.dadosCliente(cmdSelect, textBoxTel1Cliente, textBoxTel2Cliente, textBoxEnderecoCliente, textBoxNumCliente,
-                textBoxBairroCliente, textBoxComplemento, textBoxNomeCliente);
+                textBoxBairroCliente, textBoxComplemento, textBoxNome2);
 
             textBoxCPFCliente.Text = textBoxCPFBUSCA.Text;
 
@@ -338,17 +410,89 @@ INNER JOIN TIPOS AS nT ON nT.idTipo = A.idTipo INNER JOIN PORTES AS nP on nP.idP
         private void tabControl1_Click(object sender, EventArgs e)
         {
             //Encerrar o Programa com o X
-
-            if(tabPage6.Focus())
+            if (tabPage6.Focus())
             {
-                DialogResult result= MessageBox.Show("Deseja sair do Sistema HydraPetSoft?", "HydraPetSoft", MessageBoxButtons.YesNo, 
+                DialogResult result = MessageBox.Show("Deseja sair do Sistema HydraPetSoft?", "HydraPetSoft", MessageBoxButtons.YesNo,
                     MessageBoxIcon.Information);
 
-                if(result == DialogResult.Yes)
+                if (result == DialogResult.Yes)
                 {
                     this.Close();
                 }
             }
+            else if (tabPage3.Focus())
+            {
+                limpaAbaOS();
+            }
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string idOrdem = dataGridView3.Rows[e.RowIndex].Cells["ID"].Value.ToString();
+            cadastro.dadosOrdemServico(
+                Int32.Parse(idOrdem), 
+                dataGridView2,
+                clienteNome,
+                clienteCpf,
+                clienteBairro,
+                clienteEndereco,
+                clienteNumero,
+                clienteTel1,
+                clienteTel2,
+                petNome,
+                petTipo,
+                petPorte,
+                petObs,
+                ordemBairro,
+                ordemEndereco,
+                ordemNumero,
+                ordemComplemento                
+                );
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void textBox22_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox27_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label29_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxAgendCPF_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+
         }
 
         /*private void tabControl1_DrawItem(object sender, DrawItemEventArgs e)

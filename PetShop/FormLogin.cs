@@ -23,10 +23,25 @@ namespace PetShop
             string cmdSelect = @"SELECT USUARIO, SENHA FROM LOGINS WHERE (USUARIO='" + textBoxUSUARIO.Text + "' AND SENHA ='" + 
                 textBoxSENHA.Text + "');";
 
-            if (cadastro.verificaSeTrue(cmdSelect))
+            if (cadastro.verificaSeTrue(cmdSelect) == true)
             {
-                MessageBox.Show("Login");
+                this.Hide();
             }
+            else
+            {
+                MessageBox.Show("Usuário ou Senha inválido.");
+                //Application.Exit();
+            }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FormLogin_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

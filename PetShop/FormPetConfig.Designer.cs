@@ -108,6 +108,7 @@
             this.ClientSize = new System.Drawing.Size(350, 176);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormPetConfig";
             this.Text = "Pet";

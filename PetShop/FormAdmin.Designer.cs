@@ -38,6 +38,8 @@
             this.textBoxNomeCasa = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBoxValor = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.buttonCadastroServico = new System.Windows.Forms.Button();
@@ -45,6 +47,7 @@
             this.textBoxNomeServico = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.buttonAddFuncao = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBoxFuncao = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -55,9 +58,6 @@
             this.textBoxLoginUsuario = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBoxValor = new System.Windows.Forms.TextBox();
-            this.buttonAddFuncao = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox11.SuspendLayout();
@@ -158,6 +158,23 @@
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "Serviços";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(279, 34);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(31, 13);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Valor";
+            // 
+            // textBoxValor
+            // 
+            this.textBoxValor.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.textBoxValor.Location = new System.Drawing.Point(316, 31);
+            this.textBoxValor.Name = "textBoxValor";
+            this.textBoxValor.Size = new System.Drawing.Size(94, 20);
+            this.textBoxValor.TabIndex = 5;
+            // 
             // label14
             // 
             this.label14.AutoSize = true;
@@ -233,6 +250,16 @@
             this.groupBox6.TabIndex = 1;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Cadastro Funcionário";
+            // 
+            // buttonAddFuncao
+            // 
+            this.buttonAddFuncao.Location = new System.Drawing.Point(267, 29);
+            this.buttonAddFuncao.Name = "buttonAddFuncao";
+            this.buttonAddFuncao.Size = new System.Drawing.Size(30, 23);
+            this.buttonAddFuncao.TabIndex = 9;
+            this.buttonAddFuncao.Text = "+";
+            this.buttonAddFuncao.UseVisualStyleBackColor = true;
+            this.buttonAddFuncao.Click += new System.EventHandler(this.buttonAddFuncao_Click);
             // 
             // label1
             // 
@@ -319,39 +346,13 @@
             this.imageList1.Images.SetKeyName(1, "Dog (9).ico");
             this.imageList1.Images.SetKeyName(2, "Home (3).ico");
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(279, 34);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(31, 13);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Valor";
-            // 
-            // textBoxValor
-            // 
-            this.textBoxValor.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.textBoxValor.Location = new System.Drawing.Point(316, 31);
-            this.textBoxValor.Name = "textBoxValor";
-            this.textBoxValor.Size = new System.Drawing.Size(94, 20);
-            this.textBoxValor.TabIndex = 5;
-            // 
-            // buttonAddFuncao
-            // 
-            this.buttonAddFuncao.Location = new System.Drawing.Point(267, 29);
-            this.buttonAddFuncao.Name = "buttonAddFuncao";
-            this.buttonAddFuncao.Size = new System.Drawing.Size(30, 23);
-            this.buttonAddFuncao.TabIndex = 9;
-            this.buttonAddFuncao.Text = "+";
-            this.buttonAddFuncao.UseVisualStyleBackColor = true;
-            this.buttonAddFuncao.Click += new System.EventHandler(this.buttonAddFuncao_Click);
-            // 
             // FormAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(488, 279);
             this.Controls.Add(this.tabControl1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormAdmin";
             this.Text = "Administrador";

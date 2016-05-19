@@ -25,8 +25,8 @@ namespace PetShop
         {
             //CADASTRO DE USUARIOS - FUNCIONARIOS COM SEUS LOGINS
 
-            string cmdInsert = @"INSERT INTO LOGINS VALUES('" + textBoxLoginUsuario.Text + "', '" + textBoxSenhaUsuario.Text + "', '" +
-                textBoxNomeUsuario.Text + "', " + comboBoxFuncao.SelectedValue + ");";
+            string cmdInsert = @"INSERT INTO LOGINS (nomeUsuario, usuario, senha, status, idPerfil) VALUES('" + textBoxLoginUsuario.Text + "', '" + textBoxSenhaUsuario.Text + "', '" +
+                textBoxNomeUsuario.Text + "', " + comboBoxFuncao.SelectedValue + ", 1);";
 
             cadastro.cadastro(cmdInsert);
 
